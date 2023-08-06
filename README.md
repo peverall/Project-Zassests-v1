@@ -8,3 +8,12 @@ Currently working on building interfaces for computers and printers on the serve
 Project Zassets repository.
 
 # Test push to remote repo
+
+# HOW TO RUN THE APPLICATION
+To run the application, follow these stesp: 
+1. Clone the repo and install Node dependencies using the command:
+    npm install cors dotenv express mongodb
+2. Be sure to have the username and password for the database in the connection string for the dotenv file. 
+3. Currently, the app runs as far as connecting to the MongoDB with no API. Use the command
+    npx ts-node src/server.ts
+   to run it on http://localhost:5200 
