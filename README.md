@@ -11,9 +11,17 @@ Project Zassets repository.
 
 # HOW TO RUN THE APPLICATION
 To run the application, follow these stesp: 
-1. Clone the repo and install Node dependencies using the command:
-    npm install cors dotenv express mongodb
-2. Be sure to have the username and password for the database in the connection string for the dotenv file. 
-3. Currently, the app runs as far as connecting to the MongoDB with no API. Use the command
-    npx ts-node src/server.ts
-   to run it on http://localhost:5200 
+1.  Clone the repo and install Node dependencies using the command:
+    "npm install cors dotenv express mongodb" for the server side. This would be done in the server root folder. 
+
+2.  Install Node dependencies on the Angular client side along with Angular CLI using the commmand:
+        "npm install -g @angular/cli"
+3.  Be sure to have the username and password for the database in the connection string for the dotenv file which is not included in the repo for 
+    security reasons.
+4.  Currently, to run the app, first run the server side using the command: 
+        "npx ts-node src/server.ts"
+    which will open on http://localhost:5200 
+
+    Next run the client side using the commmand:
+        "ng serve -o"
+    which will open on http://localhost:4200

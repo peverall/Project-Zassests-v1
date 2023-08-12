@@ -1,0 +1,17 @@
+mat-toolbar {
+    justify-content: space-between;
+}
+
+.content{
+    padding: 32px;
+}
+
+.app-name {
+    cursor: pointer;
+}
+
+.logo {
+    width: 18px;
+    height: 18px;
+    margin-bottom: 4px;
+}
