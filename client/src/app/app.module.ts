@@ -1,5 +1,10 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, platformBrowser } from '@angular/platform-browser';
+
+// Angular Firebase imports
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getAuth, provideAuth} from '@angular/fire/auth';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +23,9 @@ import { LogInComponent } from './components/log-in/log-in.component';
 import { HomeComponent } from './components/home/home.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component'; 
+import { NoopAnimationPlayer } from '@angular/animations';
+import { environment } from 'src/environments/environment';
+
 
 @NgModule({
   declarations: [
@@ -33,6 +41,9 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
   ],
   imports: [
     BrowserModule,
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()), 
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule, // <== NEWLY ADDED LINE
@@ -43,6 +54,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     MatButtonModule, 
     MatFormFieldModule, 
     MatInputModule, 
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

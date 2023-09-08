@@ -28,14 +28,14 @@ import { ComputerService } from 'src/services/computer.service';
           <td>{{computer.ram}}</td>
           <td>{{computer.location}}</td>
           <td>
-            <button class="btn btn-primary me-1" [routerLink]="['edit/', computer._id]">Edit</button>
+            <button class="btn btn-primary me-1" [routerLink]="['/computers/edit/', computer._id]">Edit</button>
             <button class="btn btn-danger" (click)="deleteComputer(computer._id || '')">Delete</button>
           </td>
         </tr>
       </tbody>
     </table>
 
-    <button class="btn btn-primary mt-3" [routerLink]="['new']">Add a New Computer</button>
+    <button class="btn btn-primary mt-3" routerLink="/computers/new">Add a New Computer</button>
      `
 })
 export class ComputersListComponent implements OnInit {
