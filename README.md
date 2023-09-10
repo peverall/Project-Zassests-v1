@@ -16,6 +16,10 @@ To run the application, follow these stesp:
 
 2.  Install Node dependencies on the Angular client side along with Angular CLI using the commmand:
         "npm install -g @angular/cli"
+        THEN
+        npm install
+        AND 
+        "ng add @angular/material"
 3.  Be sure to have the username and password for the database in the connection string for the dotenv file which is not included in the repo for 
     security reasons.
 4.  Currently, to run the app, first run the server side using the command: 

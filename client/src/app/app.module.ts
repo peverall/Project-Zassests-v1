@@ -25,6 +25,7 @@ import { LandingComponent } from './components/landing/landing.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component'; 
 import { NoopAnimationPlayer } from '@angular/animations';
 import { environment } from 'src/environments/environment';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -53,7 +54,7 @@ import { environment } from 'src/environments/environment';
     MatIconModule, 
     MatButtonModule, 
     MatFormFieldModule, 
-    MatInputModule, 
+    MatInputModule, BrowserAnimationsModule, 
     
   ],
   providers: [],
