@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, platformBrowser } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 
 // Angular Firebase imports
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
@@ -23,9 +23,11 @@ import { LogInComponent } from './components/log-in/log-in.component';
 import { HomeComponent } from './components/home/home.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component'; 
-import { NoopAnimationPlayer } from '@angular/animations';
 import { environment } from 'src/environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireModule } from '@angular/fire/compat';
+
 
 
 @NgModule({
@@ -55,6 +57,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatButtonModule, 
     MatFormFieldModule, 
     MatInputModule, BrowserAnimationsModule, 
+
+    // FOR FIREBASE
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    
     
   ],
   providers: [],

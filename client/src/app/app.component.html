@@ -3,10 +3,25 @@
     <span class="app-name" routerLink="landing">
       <img src="./assets/images/logo_160.png" class="logo" />
       Project Zassets</span> 
-    <button mat-button routerLink="login">
-      <mat-icon>login</mat-icon>
-      Login
-    </button>
+
+      <ng-container *ngIf="(authService.currentUser$ | async) as user; else loginButton ">
+        <button mat-button (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          logout
+        </button>
+
+      </ng-container>
+
+      <ng-template #loginButton>
+        <button mat-button routerLink="login">
+          <mat-icon>login</mat-icon>
+          Login
+        </button>
+
+      </ng-template>
+
+
+    
 
     <button mat-button routerLink="signup">
       <mat-icon>login</mat-icon>
