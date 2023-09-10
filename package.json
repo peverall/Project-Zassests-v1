@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@ngneat/hot-toast": "^5.0.2"
+  }
+}
