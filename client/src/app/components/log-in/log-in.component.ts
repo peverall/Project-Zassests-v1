@@ -40,8 +40,8 @@ export class LogInComponent implements OnInit {
 
 
     this.authService.login(email, password).subscribe(() => {
-
-    })
+      this.router.navigate(['/home']);
+    });
 
 
 
