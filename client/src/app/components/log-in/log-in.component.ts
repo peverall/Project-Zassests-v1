@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-
+import { ToastrService } from 'ngx-toastr';
  
 
 @Component({
@@ -21,6 +21,7 @@ export class LogInComponent implements OnInit {
   constructor(
     private authService: AuthenticationService, 
     private router: Router,
+    private toastr:ToastrService,
     private toast: HotToastService){
 
   }
@@ -44,16 +45,24 @@ export class LogInComponent implements OnInit {
     }
 
 
-    this.authService.login(email, password)
+    this.authService.login(email, password).subscribe(()=>{
+      if (this.loginForm.valid && email && password) {
+        this.toastr.success('Logged in successfully');
+        this.router.navigate(['/home']);
+      }
+    })
+    
+
+    /* this.authService.login(email, password)
     .pipe(
-      this.toast.observe({
+      this.toastr.toastrConfig({
         success: 'Logged in successfully',
         loading: 'Authenticating...',
         error: 'Error - Authentication Failed. Check username and password'
       })
     ).subscribe(() => {
       this.router.navigate(['/home']);
-    });
+    }); */
 
 
 

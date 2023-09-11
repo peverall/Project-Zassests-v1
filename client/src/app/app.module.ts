@@ -27,6 +27,7 @@ import { environment } from 'src/environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -44,6 +45,7 @@ import { AngularFireModule } from '@angular/fire/compat';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()), 
@@ -61,6 +63,13 @@ import { AngularFireModule } from '@angular/fire/compat';
     // FOR FIREBASE
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
+
+    //FOR TOASTR
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-top-center', 
+      preventDuplicates: true,
+    }),
     
     
   ],
