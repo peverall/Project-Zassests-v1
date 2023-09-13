@@ -47,8 +47,11 @@ export class LogInComponent implements OnInit {
 
     this.authService.login(email, password).subscribe(()=>{
       if (this.loginForm.valid && email && password) {
-        this.toastr.success('Logged in successfully');
+        this.toastr.success('Logged in successfully', 'All set!');
         this.router.navigate(['/home']);
+      }else{
+        this.toastr.error('Please check username or password','Authentication Faied!')
+        this.router.navigate(['/login']);
       }
     })
     
