@@ -14,10 +14,20 @@ export class AuthenticationService {
   constructor(public auth: Auth, public afAuth: AngularFireAuth) { }
 
    
+async login(username: string, password: string): Promise<boolean> {
+  try {
+    await this.afAuth.signInWithEmailAndPassword(username, password);
+    return true; // Authentication successful
+  } catch (error) {
+    console.error('Authentication failed: ', error);
+    return false; // Authentication failed
+  }
+}
 
+/* 
   login(username: string, password: string){
     return from (signInWithEmailAndPassword(this.auth, username, password)); //returns an obersable
-   }
+   } */
 
    logout(){
     return from(this.auth.signOut());

@@ -37,23 +37,35 @@ export class LogInComponent implements OnInit {
   }
 
   
-  onSubmit(){
+  async onSubmit(){
     const { email, password } = this.loginForm.value;
 
     if (!this.loginForm.valid || !email || !password){
       return;
     }
 
+    if (await this.authService.login(email, password)){
+      this.toastr.success('Logged in successfully', 'All set!');
+      this.router.navigate(['/home']);
+    } else {
+      this.toastr.error('Please check username or password','Authentication Faied!');
+       this.router.navigate(['/login']);
+    } 
+  }
 
-    this.authService.login(email, password).subscribe(()=>{
+}
+
+// PREVIOUS TOASTR AUTHENTICATION CODE
+
+ /* this.authService.login(email, password).subscribe(()=>{
       if (this.loginForm.valid && email && password) {
         this.toastr.success('Logged in successfully', 'All set!');
         this.router.navigate(['/home']);
       }else{
-        this.toastr.error('Please check username or password','Authentication Faied!')
+        this.toastr.error('Please check username or password','Authentication Faied!');
         this.router.navigate(['/login']);
       }
-    })
+    }) */
     
 
     /* this.authService.login(email, password)
@@ -66,10 +78,3 @@ export class LogInComponent implements OnInit {
     ).subscribe(() => {
       this.router.navigate(['/home']);
     }); */
-
-
-
-  }
- 
-
-}
