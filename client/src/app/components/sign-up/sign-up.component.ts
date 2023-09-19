@@ -9,7 +9,7 @@ export function passwordsMatchValidator(): ValidatorFn {
 
     if (password && confirmPassword && password !== confirmPassword) {
       return {
-        passwrodsDoNotMatch: true
+        passwordsDoNotMatch: true
       }
     }
 
@@ -19,11 +19,13 @@ export function passwordsMatchValidator(): ValidatorFn {
 
 
 
+
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css']
 })
+
 export class SignUpComponent {
   signUpForm = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -33,6 +35,19 @@ export class SignUpComponent {
   }, { validators: passwordsMatchValidator() })
 
   constructor(){ }
+
+  public onSubmit(){
+    /*   console.log(this.signupForm.value);
+      createUserWithEmailAndPassword(
+      this.auth,
+      this.signupForm.value.email,
+      this.signupForm.value.password).then((res:any) => {
+        console.log(res);
+      }).catch((err) => {
+        console.log(err);
+        alert(err.message);
+      }) */
+    }
   
 
   ngOnInit(): void{  }

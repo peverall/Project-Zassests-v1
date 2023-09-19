@@ -22,9 +22,7 @@ export class LogInComponent implements OnInit {
     private authService: AuthenticationService, 
     private router: Router,
     private toastr:ToastrService,
-    private toast: HotToastService){
-
-  }
+    private toast: HotToastService){}
 
   ngOnInit(): void { }
   
@@ -35,7 +33,6 @@ export class LogInComponent implements OnInit {
   get password() {
     return this.loginForm.get('password');
   }
-
   
   async onSubmit(){
     const { email, password } = this.loginForm.value;
