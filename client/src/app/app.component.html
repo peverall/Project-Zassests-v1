@@ -5,9 +5,19 @@
       Project Zassets</span> 
 
       <ng-container *ngIf="(authService.currentUser$ | async) as user; else loginButton ">
-        <button mat-button (click)="logout()">
+        <!-- PREVIOUS WORKING LOGOUT-->
+        <!-- <button mat-button (click)="logout()">
           <mat-icon>logout</mat-icon>
           logout
+        </button> -->
+        <button mat-button [mat-menu-trigger-for]="userMenu">
+          
+          <mat-icon>account_circle</mat-icon>
+          
+          {{ user.email}}
+
+          <mat-icon>expand_more</mat-icon>
+          
         </button>
 
       </ng-container>
@@ -20,17 +30,25 @@
 
       </ng-template>
 
+      
+
 
     
 
-    <button mat-button routerLink="signup">
+    <!-- <button mat-button routerLink="signup">
       <mat-icon>login</mat-icon>
       DEV Sign Up
-    </button>
+    </button> -->
 
 
   </mat-toolbar>
+
+  <mat-menu #userMenu="matMenu">
+    <button mat-menu-item (click)="logout()">Logout</button>
+  </mat-menu>
   
+
+
   <div class="content">
     <router-outlet></router-outlet>
   </div>

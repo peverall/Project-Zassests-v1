@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Auth, signInWithEmailAndPassword, authState } from '@angular/fire/auth';
-import { from, Observable, switchMap } from 'rxjs';
+import { Auth, signInWithEmailAndPassword, authState, UserCredential, updateProfile } from '@angular/fire/auth';
+import { from, Observable, of, switchMap } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { User } from 'firebase/auth';
 
 
 @Injectable({
@@ -11,7 +12,7 @@ import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 export class AuthenticationService {
 
   currentUser$ = this.afAuth.authState;
-
+  
   constructor(public auth: Auth, public afAuth: AngularFireAuth) { }
 
    
@@ -24,6 +25,29 @@ export class AuthenticationService {
         return false; // Authentication failed
       }
     }
+
+    async signUp(name: string, email: string, password: string): Promise<boolean> {
+      try {
+        const result = await this.afAuth.createUserWithEmailAndPassword(email, password);
+        return true; 
+      } catch (error) {
+        console.error('Error signing up: ', error);
+        throw error;
+      }
+    }
+
+
+    // NO ERROR SIGN UP CODE
+    /* async signUp(email: string, password: string): Promise<any> {
+      try {
+        const result = await this.afAuth.createUserWithEmailAndPassword(email, password);
+        return result; 
+      } catch (error) {
+        console.error('Error signing up: ', error);
+        throw error;
+      }
+    } */
+
 
    logout(){
     return from(this.auth.signOut());

@@ -28,6 +28,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
 import { ToastrModule } from 'ngx-toastr';
+import {MatMenuModule} from '@angular/material/menu';
+
 
 
 
@@ -59,6 +61,7 @@ import { ToastrModule } from 'ngx-toastr';
     MatButtonModule, 
     MatFormFieldModule, 
     MatInputModule, BrowserAnimationsModule, 
+    MatMenuModule,
 
     // FOR FIREBASE
     AngularFireAuthModule,

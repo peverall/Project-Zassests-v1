@@ -45,7 +45,7 @@ export class LogInComponent implements OnInit {
       this.toastr.success('Logged in successfully', 'All set!');
       this.router.navigate(['/home']);
     } else {
-      this.toastr.error('Please check username or password','Authentication Faied!');
+      this.toastr.error('Please check username or password','Authentication Failed!');
        this.router.navigate(['/login']);
     } 
   }

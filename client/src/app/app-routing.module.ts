@@ -7,15 +7,20 @@ import { HomeComponent } from './components/home/home.component';
 import { LogInComponent } from './components/log-in/log-in.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { redirectUnauthorizedTo, redirectLoggedInTo, AuthGuard, canActivate } from '@angular/fire/auth-guard';
+
+
+const redirectToLoginPage = () => redirectUnauthorizedTo(['login']);
+const redirectToHomePage = () => redirectLoggedInTo(['home']);
 
 const routes: Routes = [
   //{ path: '', redirectTo: 'computers', pathMatch: 'full'},
   //{ path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: '', redirectTo: 'landing', pathMatch: 'full' },
   { path: 'landing', component: LandingComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'login', component: LogInComponent },
-  { path: 'signup', component: SignUpComponent },
+  { path: 'home', component: HomeComponent, ...canActivate(redirectToLoginPage) },
+  { path: 'login', component: LogInComponent, ...canActivate (redirectToHomePage) },
+  { path: 'signup', component: SignUpComponent, ...canActivate (redirectToHomePage) },
   { path: 'computers', component: ComputersListComponent },
   { path: 'computers/new', component: AddComputerComponent }, // <== NEWLY ADDED LINE
   { path: 'computers/edit/:id', component: EditComputerComponent } // <== NEWLY ADDED LINE

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { switchMap } from 'rxjs';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 export function passwordsMatchValidator(): ValidatorFn {
@@ -17,9 +21,6 @@ export function passwordsMatchValidator(): ValidatorFn {
   };
 }
 
-
-
-
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -27,6 +28,7 @@ export function passwordsMatchValidator(): ValidatorFn {
 })
 
 export class SignUpComponent {
+
   signUpForm = new FormGroup({
     name: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.email, Validators.required]),
@@ -34,20 +36,55 @@ export class SignUpComponent {
     confirmPassword: new FormControl('', Validators.required)
   }, { validators: passwordsMatchValidator() })
 
-  constructor(){ }
+  constructor(
+    private authService: AuthenticationService,
+    private router: Router, 
+    private toastr: ToastrService){ }
 
-  public onSubmit(){
-    /*   console.log(this.signupForm.value);
-      createUserWithEmailAndPassword(
-      this.auth,
-      this.signupForm.value.email,
-      this.signupForm.value.password).then((res:any) => {
-        console.log(res);
-      }).catch((err) => {
-        console.log(err);
-        alert(err.message);
-      }) */
+ 
+
+  public async onSubmit(){
+
+    const { name, email, password } = this.signUpForm.value;
+
+    if (!this.signUpForm.valid || !name || !password || !email) {
+      return;
     }
+
+    if (await this.authService.signUp(name, email, password)){
+      this.toastr.success('Successfully signed up!', 'Sign up completed')
+      this.router.navigate(['/login']);
+    } else {
+      this.toastr.error('Please check username or password','Sign up Failed!');
+       this.router.navigate(['/login']);
+    }
+
+    /* this.authService
+    .signUp(email, password)
+    .pipe(
+      switchMap(({ user: { uid } }) => 
+      this.userService.addUser({ uid, email, displayName: name })
+      ), 
+      this.toast.observe({
+        success:'Successfully signed up!', 
+        loading: 'Completing sign up...', 
+        error: ({ message }) => `${message}`,
+      })
+    )
+    .subscribe(() => {
+      this.router.navigate(['/home']);
+    }) */
+
+
+    /* this.authService.signUp(email, password)
+    .then(result => {
+      console.log('Signed up successfully!', result);
+    })
+    .catch(error => {
+      console.error("Error during sign up: ", error);
+    }); */
+ 
+  }
   
 
   ngOnInit(): void{  }
@@ -68,9 +105,5 @@ export class SignUpComponent {
     return this.signUpForm.get('confirmPassword');
   }
 
-  // submit(){
-
-  // }
-
-
+ 
 }
