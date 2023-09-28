@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, platformBrowser } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 
 // Angular Firebase imports
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
@@ -23,9 +23,14 @@ import { LogInComponent } from './components/log-in/log-in.component';
 import { HomeComponent } from './components/home/home.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component'; 
-import { NoopAnimationPlayer } from '@angular/animations';
 import { environment } from 'src/environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireModule } from '@angular/fire/compat';
+import { ToastrModule } from 'ngx-toastr';
+import {MatMenuModule} from '@angular/material/menu';
+
+
 
 
 @NgModule({
@@ -42,6 +47,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()), 
@@ -55,6 +61,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatButtonModule, 
     MatFormFieldModule, 
     MatInputModule, BrowserAnimationsModule, 
+    MatMenuModule,
+
+    // FOR FIREBASE
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebase),
+
+    //FOR TOASTR
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-top-center', 
+      preventDuplicates: true,
+    }),
+    
     
   ],
   providers: [],
