@@ -1,8 +1,25 @@
 <mat-toolbar color="primary">
+
+
+
+  <ng-container *ngIf="(authService.currentUser$ | async ) as user;">
+
+    <button mat-icon-button >
+      <mat-icon class="menu-icon">menu</mat-icon>
+      Menu
+    </button>
+  
     
-    <span class="app-name" routerLink="landing">
+  </ng-container>
+
+    <span class="app-name" routerLink="landing">    
+
       <img src="./assets/images/logo_160.png" class="logo" />
-      Project Zassets</span> 
+      Project Zassets
+    </span> 
+
+
+
 
       <ng-container *ngIf="(authService.currentUser$ | async) as user; else loginButton ">
         <!-- PREVIOUS WORKING LOGOUT-->
@@ -10,6 +27,7 @@
           <mat-icon>logout</mat-icon>
           logout
         </button> -->
+        
         <button mat-button [mat-menu-trigger-for]="userMenu">
           
           <mat-icon>account_circle</mat-icon>
@@ -40,8 +58,9 @@
       DEV Sign Up
     </button> -->
 
-
   </mat-toolbar>
+
+
 
   <mat-menu #userMenu="matMenu">
     <button mat-menu-item (click)="logout()">Logout</button>

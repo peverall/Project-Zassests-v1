@@ -11,10 +11,11 @@ Project Zassets repository.
 
 # HOW TO RUN THE APPLICATION
 To run the application, follow these stesp: 
-1.  Clone the repo and install Node dependencies using the command:
+1.  Clone the repo, navigate into the "server" directory and install Node dependencies using the command:
     "npm install cors dotenv express mongodb" for the server side. This would be done in the server root folder. 
+    Also be sure to add the ".env" file to the "server" directory.
 
-2.  Install Node dependencies on the Angular client side along with Angular CLI using the commmand:
+2.  Navigate into the "client" directory and install Node dependencies on the Angular client side along with Angular CLI using the commmand:
         "npm install -g @angular/cli"
         THEN
         npm install

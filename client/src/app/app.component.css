@@ -6,6 +6,10 @@ mat-toolbar {
     padding: 32px;
 }
 
+.menu-icon {
+  padding-top: 4px;
+}
+
 .app-name {
     cursor: pointer;
 }
