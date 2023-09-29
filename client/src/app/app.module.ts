@@ -29,6 +29,9 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
 import { ToastrModule } from 'ngx-toastr';
 import {MatMenuModule} from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+
 
 
 
@@ -62,6 +65,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatFormFieldModule, 
     MatInputModule, BrowserAnimationsModule, 
     MatMenuModule,
+    MatSidenavModule, 
+    MatListModule,
 
     // FOR FIREBASE
     AngularFireAuthModule,
